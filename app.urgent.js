@@ -1,10 +1,19 @@
-angular.module('app', ['ngRoute']).config(config);
+angular.module('app', ['ui.router']).config(config);
 
 /**
  * @ngInject
  */
-function config($routeProvider) {
-  $routeProvider.when('/', {
-    templateUrl: 'views/home.html'
+function config($stateProvider,$urlRouterProvider) {
+  $urlRouterProvider.otherwise("/displayList/");
+  $stateProvider.state('displayList',{
+    url: '/displayList/:id',
+    templateUrl: 'views/displayList.html'
+  }).state('bookScanner', {
+    url: '/bookScanner/:edit',
+    templateUrl: 'views/bookScanner.html'
+  }).state('eventScanner',{
+    url: '/eventScanner/:id/:title/:edit',
+    templateUrl: 'views/eventScanner.html'
   });
 }
+

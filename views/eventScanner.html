@@ -1,13 +1,19 @@
 <ui-view ng-controller="EventScannerController as EventScannerCtrl">
     <div>
-        事件信息
-        <button ng-click="EventScannerCtrl.addEvent()">+</button>
+        <{{EventScannerCtrl.title}}>事件信息
+        <!--<button ng-click="EventScannerCtrl.addEvent()">+</button>-->
     </div>
 
-    <div ng-repeat="event in EventScannerCtrl.events">
-        事件开始范围:<input type="number" ng-model="event.startBegin"><input type="number" ng-model="event.startClose">
-        事件结束范围:<input type="number" ng-model="event.endBegin"><input type="number" ng-model="event.endBegin">
-        事件描述:<textarea placeholder="请填写事件描述" ng-model="event.description"></textarea>
+    <div>
+        <div>
+            事件开始时间:<input type="number" ng-model="EventScannerCtrl.start">
+        </div>
+        <div>
+            事件结束范围:<input type="number" ng-model="EventScannerCtrl.end">
+        </div>
+        <div>
+            事件描述:<textarea placeholder="请填写事件描述" ng-model="EventScannerCtrl.description"></textarea>
+        </div>
     </div>
 
     <button ng-click="EventScannerCtrl.saveEvent()">保存</button>

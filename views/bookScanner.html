@@ -1,12 +1,17 @@
-<ui-view ng-contrller="BookScannerController as BookScannerCtrl">
-    <div>
-        书籍信息录入
+<ui-view ng-controller="BookScannerController as BookScannerCtrl">
+    <div class="container">
+        <div class="jumbotron">
+            <h1>书籍信息录入</h1>
+            <!--<p>Describe</p>-->
+        </div>
+        <!--<p>This is some text.</p>-->
     </div>
 
     <div>
-        书籍信息
         <div>
             书籍名称:<textarea placeholder="请填写书籍名称" ng-model="BookScannerCtrl.tempBookName"></textarea>
+        </div>
+        <div>
             书籍作者:<input placeholder="请填写作者姓名" ng-model="BookScannerCtrl.tempBookAuthor" type="text">
         </div>
     </div>
