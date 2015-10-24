@@ -1,7 +1,6 @@
 angular
   .module('show', [
-    'ui.router',
-    'ngSanitize'
+    'ui.router'
   ])
   .config(moduleConfig)
   .directive('show', ShowDirective);
