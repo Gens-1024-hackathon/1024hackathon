@@ -1,4 +1,7 @@
-angular.module('app', ['ui.router']).config(config);
+angular.module('app', [
+  'ui.router',
+  'show'
+]).config(config);
 
 /**
  * @ngInject
@@ -16,4 +19,3 @@ function config($stateProvider,$urlRouterProvider) {
     templateUrl: 'views/eventScanner.html'
   });
 }
-
