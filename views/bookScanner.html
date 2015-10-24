@@ -1,0 +1,16 @@
+<ui-view ng-contrller="BookScannerController as BookScannerCtrl">
+    <div>
+        书籍信息录入
+    </div>
+
+    <div>
+        书籍信息
+        <div>
+            书籍名称:<textarea placeholder="请填写书籍名称" ng-model="BookScannerCtrl.tempBookName"></textarea>
+            书籍作者:<input placeholder="请填写作者姓名" ng-model="BookScannerCtrl.tempBookAuthor" type="text">
+        </div>
+    </div>
+
+    <button ng-click="BookScannerCtrl.saveBook()">保存</button>
+    <button>取消</button>
+</ui-view>
