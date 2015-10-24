@@ -20,7 +20,7 @@ function DisplayListController($q,$state){
                     bk = result;
                     myScope.getEventList(bk);
                 });
-        }else if(myScope.books.length != 0) {
+        }else if(!!myScope.books &&myScope.books.length != 0) {
             $q.when(book.findById(myScope.books[0]._id))
                 .then(function (result) {
                     bk = result;
