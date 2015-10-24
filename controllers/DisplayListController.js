@@ -11,22 +11,26 @@ function DisplayListController($q,$state){
     var eventGroup = _model.EventGroup;
 
     function initialize(){
-        myScope.getBookList();
         myScope.events = [];
-        var bk = {};
-        if($state.params.id != ''){
-            $q.when(book.findById($state.params.id))
-                .then(function(result){
-                    bk = result;
-                    myScope.getEventList(bk);
-                });
-        }else if(!!myScope.books &&myScope.books.length != 0) {
-            $q.when(book.findById(myScope.books[0]._id))
-                .then(function (result) {
-                    bk = result;
-                    myScope.getEventList(bk);
-                })
-        }
+        $q.when(book.findAll())
+            .then(function(result){
+                console.log(result);
+                myScope.books = result;
+                var bk = {};
+                if($state.params.id != ''){
+                    $q.when(book.findById($state.params.id))
+                        .then(function(result){
+                            bk = result;
+                            myScope.getEventList(bk);
+                        });
+                }else if(!!myScope.books &&myScope.books.length != 0) {
+                    $q.when(book.findById(myScope.books[0]._id))
+                        .then(function (result) {
+                            bk = result;
+                            myScope.getEventList(bk);
+                        })
+                }
+            })
     }
 
     this.changeBook = function(book){
