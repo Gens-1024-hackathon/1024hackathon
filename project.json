@@ -4,7 +4,9 @@
   "dependencies": {
     "angular-ui-router": "0.2.15",
     "angular-bootstrap": "0.14.3",
-    "bootstrap": "3.3.4"
+    "bootstrap": "3.3.4",
+    "moment": "~2.10.6",
+    "ng-file-upload": "9.1.1"
   },
   "overrides": {
     "marked": "lib/marked.js"
