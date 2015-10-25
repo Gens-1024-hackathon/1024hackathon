@@ -117,11 +117,62 @@ function DisplayListController($q,$state){
         $state.go('eventScanner',{id:book._id,title:book.title},{reload:true})
     };
 
-    this.batchInsert = function(MsgArray){
-        angular.forEach(MsgArray,function(data){
-            console.log(data);
-        });
+    this.upload = function(file) {
+
+      var reader = new FileReader();
+      reader.onload = function(evt) {
+        var data = JSON.parse(evt.target.result);
+          myScope.batchInsert(data);
+      };
+      reader.readAsText(file);
+
     };
+
+    this.judgeTitle = function(books,title){
+        var id = '';
+        books.forEach(function(item){
+           console.log(item);
+            if(item.title === title){
+                id = item._id;
+            }
+        });
+        return id;
+    };
+
+    //this.batchInsert = function(MsgArray) {
+    //    console.log(MsgArray);
+    //    var a = Object.keys(MsgArray.reduce(function(memo,item){
+    //        memo[item.tags[0]] = true;
+    //        return memo;
+    //    },{}));
+    //    $q.all(a.map(function(data){
+    //        return book.create({
+    //                type: 'book',
+    //                title: data,
+    //                author: '网络来源'
+    //            })
+    //        }))
+    //        .then(function(books){
+    //            angular.forEach(MsgArray,function(item){
+    //                var bookId = myScope.judgeTitle(books,item.tags[0]);
+    //                $q.when(eventGroup.create({
+    //                    bookId: bookId,
+    //                    description: item.description,
+    //                    anchor: [
+    //                        {
+    //                            value: moment.unix(item.time.start.start).year()
+    //                        },
+    //                        {
+    //                            value: moment.unix(item.time.end.end).year()
+    //                        }
+    //                    ]
+    //                }))
+    //                    .then(function(result){
+    //                        console.log(result);
+    //                    })
+    //            })
+    //        });
+    //};
 
     initialize();
 }
