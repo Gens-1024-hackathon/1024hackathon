@@ -117,5 +117,15 @@ function DisplayListController($q,$state){
         $state.go('eventScanner',{id:book._id,title:book.title},{reload:true})
     };
 
+    this.upload = function(file) {
+
+      var reader = new FileReader();
+      reader.onload = function(evt) {
+        var data = JSON.parse(evt.target.result);
+      };
+      reader.readAsText(file);
+
+    };
+
     initialize();
 }

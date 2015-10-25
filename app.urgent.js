@@ -1,6 +1,7 @@
 angular.module('app', [
   'ui.router',
-  'show'
+  'show',
+  'ngFileUpload'
 ]).config(config);
 
 /**
