@@ -24,6 +24,10 @@ function EventScannerController($q,$state,verifyService){
         }
     }
 
+    this.cancel = function() {
+      window.history.back();
+    };
+
     //todo formcheck
     this.dataCheck = function(){
         var intTest = /^-?\d+$/;
