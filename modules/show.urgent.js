@@ -1,6 +1,7 @@
 angular
   .module('show', [
-    'ui.router'
+    'ui.router',
+    'ui.bootstrap'
   ])
   .config(moduleConfig)
   .directive('show', ShowDirective);
@@ -49,6 +50,16 @@ ShowController.prototype.initialize = function() {
     .then(function(books) {
       self.books = books;
     });
+};
+
+ShowController.prototype.toggle = function(book) {
+
+  if (book.state) {
+    this.open(book._id);
+  } else {
+    this.close(book._id);
+  }
+
 };
 
 ShowController.prototype.open = function(bookId) {

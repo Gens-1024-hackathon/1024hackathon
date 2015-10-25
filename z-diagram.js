@@ -22,7 +22,9 @@ var Axis = (function () {
   _createClass(Axis, [{
     key: 'updatePosition',
     value: function updatePosition(timeSet) {
-      this.position = Object.keys(timeSet).sort();
+      this.position = Object.keys(timeSet).sort(function (a, b) {
+        return parseInt(a) - parseInt(b);
+      });
     }
   }, {
     key: 'getPosition',
@@ -112,14 +114,14 @@ var ViewEventGroup = (function () {
     }
   }, {
     key: 'renderTo',
-    value: function renderTo(axis, column) {
+    value: function renderTo(axis, column, bookIndex) {
 
       var width = this.widthUnit;
       var height = this.heightUnit * (this.getEndPosition(axis) - this.getStartPosition(axis));
       var left = this.offsetX + column * this.widthUnit;
       var top = this.offsetY + this.getStartPosition(axis) * this.heightUnit;
 
-      return '\n      <div style="\n        position: absolute;\n        border: 1px solid black;\n        left: ' + left + 'px;\n        top: ' + top + 'px;\n        height: ' + height + 'px;\n        width: ' + width + 'px;\n      ">\n        <div style="\n          background-color: red;\n          width: 100%;\n          height: 100%;\n        ">' + this.description + '</div>\n      </div>\n    ';
+      return '\n      <div class="book-' + bookIndex.indexOf(this.bookId) + '" style="\n        position: absolute;\n        left: ' + left + 'px;\n        top: ' + top + 'px;\n        height: ' + height + 'px;\n        width: ' + width + 'px;\n        padding: 2px;\n      ">\n        <div style="\n          background-color: #eee;\n          width: 100%;\n          height: 100%;\n        ">' + this.description + '</div>\n      </div>\n    ';
     }
   }]);
 
@@ -257,14 +259,31 @@ var Diagram = (function () {
     }
   }, {
     key: 'render',
-    value: function render() {
+    value: function render(booked) {
       var _this9 = this;
 
-      var events = this.columns(_.toArray(this.viewEventGroupSet)).map(function (eventGroups, column) {
-        return eventGroups.map(function (eventGroup) {
-          return eventGroup.renderTo(_this9.axis, column);
+      var bookIndex = Object.keys(_.reduce(this.viewEventGroupSet, function (memo, eventGroup) {
+        memo[eventGroup.bookId] = true;
+        return memo;
+      }, {}));
+
+      var prepare = this.sortEventGroupsByDuration(_.toArray(this.viewEventGroupSet));
+
+      booked = true;
+      var events;
+      if (booked) {
+        events = _.flatten(_.toArray(this.bookedColumns(prepare)), true).map(function (eventGroups, column) {
+          return eventGroups.map(function (eventGroup) {
+            return eventGroup.renderTo(_this9.axis, column, bookIndex);
+          }).join('');
         }).join('');
-      }).join('');
+      } else {
+        events = this.columns(prepare).map(function (eventGroups, column) {
+          return eventGroups.map(function (eventGroup) {
+            return eventGroup.renderTo(_this9.axis, column, bookIndex);
+          }).join('');
+        }).join('');
+      }
 
       return '\n      <div style="position: relative;">\n        <div style="position: absolute;">\n          ' + events + '\n        </div>\n        <div style="position: absolute;">\n          ' + this.axis.render() + '\n        </div>\n      </div>\n    ';
     }

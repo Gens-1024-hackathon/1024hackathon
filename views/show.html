@@ -1,15 +1,24 @@
 <div>
     <div class="list_header">
-        <h1 class="list_title">书籍对比</h1>
+        <h1 class="list_title">时间线对比</h1>
         <!--<p>Describe</p>-->
     </div>
     <!--<p>This is some text.</p>-->
 </div>
 
+<br>
+
 <div class="container">
+
   <div>
-    <button class="btn btn-default" ng-click="vm.open(book._id)" ng-repeat="book in vm.books">打开：{{book.title}}</button>
-    <button class="btn btn-default" ng-click="vm.close(book._id)" ng-repeat="book in vm.books">关闭：{{book.title}}</button>
+    <label>书籍选择：</label>
+    <div class="btn-group">
+      <button ng-repeat="book in vm.books" class="btn btn-sm btn-default" uib-btn-checkbox ng-model="book.state" ng-click="vm.toggle(book)">{{book.title}}</button>
+    </div>
   </div>
+
+  <br>
+
   <div show="vm.dom"></div>
+
 </div>
