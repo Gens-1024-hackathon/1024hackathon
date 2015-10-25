@@ -1,42 +1,44 @@
 <ui-view ng-controller="DisplayListController as DisplayListCtrl">
     <div class="container">
-        <div class="jumbotron">
-            <h1>书籍列表</h1>
+        <div class="jumbotron list_header">
+            <h1 class="list_title">书籍列表</h1>
             <!--<p>Describe</p>-->
         </div>
         <!--<p>This is some text.</p>-->
     </div>
 
-    <!-- book list-->
-    <div>
-        <div>
-            书籍
-            <button ng-click="DisplayListCtrl.visitBookScanner()">+</button>
-        </div>
-        <div>
-            <div ng-repeat="book in DisplayListCtrl.books">
-                <span ng-click="DisplayListCtrl.changeBook(book)">
-                    <span>书名:{{book.title}}</span>
-                    <span>作者:{{book.author}}</span>
-                </span>
-                <button ng-click="DisplayListCtrl.visitEventScanner(book)">新增事件</button>
-                <button ng-click="DisplayListCtrl.editBook(book)">编辑</button>
-                <button ng-click="DisplayListCtrl.deleteBook(book)">删除</button>
+    <div class="list_content">
+        <!-- book list-->
+        <div class="list_left_content">
+            <div>
+                书籍
+                <button ng-click="DisplayListCtrl.visitBookScanner()">+</button>
+            </div>
+            <div>
+                <div ng-repeat="book in DisplayListCtrl.books">
+                    <span ng-click="DisplayListCtrl.changeBook(book)">
+                        <span>书名:{{book.title}}</span>
+                        <span>作者:{{book.author}}</span>
+                    </span>
+                    <button ng-click="DisplayListCtrl.visitEventScanner(book)">新增事件</button>
+                    <button ng-click="DisplayListCtrl.editBook(book)">编辑</button>
+                    <button ng-click="DisplayListCtrl.deleteBook(book)">删除</button>
+                </div>
             </div>
         </div>
-    </div>
 
-    <!-- event list -->
-    <div>
-        <div>
-            事件
-        </div>
-        <div>
-            <div ng-repeat="event in DisplayListCtrl.events | orderBy:'-anchor[0].value':true">
-                <span>{{event.anchor[0].value}}-{{event.anchor[1].value}}</span>
-                <span>{{event.description}}</span>
-                <button ng-click="DisplayListCtrl.editEvent(event)">编辑</button>
-                <button ng-click="DisplayListCtrl.deleteEvent(event)">删除</button>
+        <!-- event list -->
+        <div class="left_right_content">
+            <div>
+                事件
+            </div>
+            <div>
+                <div ng-repeat="event in DisplayListCtrl.events | orderBy:'-anchor[0].value':true">
+                    <span>{{event.anchor[0].value}}-{{event.anchor[1].value}}</span>
+                    <span>{{event.description}}</span>
+                    <button ng-click="DisplayListCtrl.editEvent(event)">编辑</button>
+                    <button ng-click="DisplayListCtrl.deleteEvent(event)">删除</button>
+                </div>
             </div>
         </div>
     </div>
