@@ -117,5 +117,11 @@ function DisplayListController($q,$state){
         $state.go('eventScanner',{id:book._id,title:book.title},{reload:true})
     };
 
+    this.batchInsert = function(MsgArray){
+        angular.forEach(MsgArray,function(data){
+            console.log(data);
+        });
+    };
+
     initialize();
 }
