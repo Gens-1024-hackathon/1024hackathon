@@ -1,21 +1,30 @@
 <ui-view ng-controller="EventScannerController as EventScannerCtrl">
-    <div>
-        <{{EventScannerCtrl.title}}>事件信息
+    <div class="list_header">
+        <h1 class="list_title"><{{EventScannerCtrl.title}}>事件信息</h1>
         <!--<button ng-click="EventScannerCtrl.addEvent()">+</button>-->
     </div>
 
-    <div>
-        <div>
-            事件开始时间:<input type="number" ng-model="EventScannerCtrl.start">
-        </div>
-        <div>
-            事件结束范围:<input type="number" ng-model="EventScannerCtrl.end">
-        </div>
-        <div>
-            事件描述:<textarea placeholder="请填写事件描述" ng-model="EventScannerCtrl.description"></textarea>
-        </div>
+    <div class="container event_content">
+        <table>
+        <tr>
+            <td>事件开始时间:</td>
+            <td><input type="number" ng-model="EventScannerCtrl.start"></td>
+        </tr>
+        <tr>
+            <td>事件结束范围:</td>
+            <td><input type="number" ng-model="EventScannerCtrl.end"></td>
+        </tr>
+        <tr>
+            <td>事件描述:</td>
+            <td><textarea placeholder="请填写事件描述" ng-model="EventScannerCtrl.description"></textarea></td>
+        </tr>
+        <tr>
+            <td>
+                <button ng-click="EventScannerCtrl.saveEvent()">保存</button>
+                <button ng-click="EventScannerCtrl.cancel()">取消</button>
+            </td>
+        </tr>
     </div>
 
-    <button ng-click="EventScannerCtrl.saveEvent()">保存</button>
-    <button ng-click="EventScannerCtrl.cancel()">取消</button>
+
 </ui-view>

@@ -62,7 +62,13 @@ function BookScannerController($state,$q,verifyService){
                     history.go(-1);
                 })
         }
+    };
 
+    /**
+     * 取消返回
+     */
+    this.cancel = function(){
+        history.go(-1);
     };
 
     initialize();

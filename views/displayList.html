@@ -42,14 +42,15 @@
             <div class="sub_title">
                 事件
             </div>
-            <div>
-                <div ng-repeat="event in DisplayListCtrl.events | orderBy:'-anchor[0].value':true">
-                    <span>{{event.anchor[0].value}}-{{event.anchor[1].value}}</span>
-                    <span>{{event.description}}</span>
-                    <button ng-click="DisplayListCtrl.editEvent(event)">编辑</button>
-                    <button ng-click="DisplayListCtrl.deleteEvent(event)">删除</button>
-                </div>
-            </div>
+            <table class="table">
+                <tr ng-repeat="event in DisplayListCtrl.events | orderBy:'-anchor[0].value':true">
+                    <td>{{event.anchor[0].value}}-{{event.anchor[1].value}}</>
+                    <td>{{event.description}}</td>
+                    <td>
+                        <button ng-click="DisplayListCtrl.editEvent(event)">编辑</button>
+                        <button ng-click="DisplayListCtrl.deleteEvent(event)">删除</button>
+                    </td>
+            </table>
         </div>
     </div>
 </ui-view>

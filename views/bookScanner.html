@@ -1,21 +1,33 @@
 <ui-view ng-controller="BookScannerController as BookScannerCtrl">
-    <div class="container">
-        <div class="jumbotron">
-            <h1>书籍信息录入</h1>
+    <div>
+        <div class="list_header">
+            <h1 class="list_title">书籍信息录入</h1>
             <!--<p>Describe</p>-->
         </div>
         <!--<p>This is some text.</p>-->
     </div>
 
-    <div>
-        <div>
-            书籍名称:<textarea placeholder="请填写书籍名称" ng-model="BookScannerCtrl.tempBookName"></textarea>
-        </div>
-        <div>
-            书籍作者:<input placeholder="请填写作者姓名" ng-model="BookScannerCtrl.tempBookAuthor" type="text">
-        </div>
+    <div class="container">
+        <table>
+            <tr>
+                <td>书籍名称:</td>
+                <td>
+                    <textarea placeholder="请填写书籍名称" ng-model="BookScannerCtrl.tempBookName"></textarea>
+                </td>
+            </tr>
+            <tr>
+                <td>书籍作者:</td>
+                <td>
+                    <input placeholder="请填写作者姓名" ng-model="BookScannerCtrl.tempBookAuthor" type="text">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <button ng-click="BookScannerCtrl.saveBook()">保存</button>
+                    <button ng-click="BookScannerCtrl.cancel()">取消</button>
+                </td>
+            </tr>
+        </table>
     </div>
 
-    <button ng-click="BookScannerCtrl.saveBook()">保存</button>
-    <button>取消</button>
 </ui-view>
