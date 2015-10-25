@@ -3,7 +3,8 @@
   "main": "app",
   "dependencies": {
     "angular-ui-router": "0.2.15",
-    "angular-bootstrap": "0.14.3"
+    "angular-bootstrap": "0.14.3",
+    "angular-sanitize": "1.4.7"
   },
   "overrides": {
     "marked": "lib/marked.js"
