@@ -24,10 +24,10 @@
                     <div class="book_style" ng-click="DisplayListCtrl.changeBook(book)" ng-repeat="book in DisplayListCtrl.books">
                         <div class="book_title">{{book.title}}</div>
                         <div>{{book.author}}</div>
-                        <div>
-                            <i class="glyphicon glyphicon-plus"></i>
-                            <i class="glyphicon glyphicon-pencil"></i>
-                            <i class="glyphicon glyphicon-remove-circle"></i>
+                        <div class="book_icon">
+                            <i class="glyphicon glyphicon-plus"  ng-click="DisplayListCtrl.visitEventScanner(book);$event.stopPropagation()"></i>
+                            <i class="glyphicon glyphicon-pencil" ng-click="DisplayListCtrl.editBook(book);$event.stopPropagation()"></i>
+                            <i class="glyphicon glyphicon-remove-circle"  ng-click="DisplayListCtrl.deleteBook(book);$event.stopPropagation()"></i>
                         </div>
                     </div>
                     <!--<button ng-click="DisplayListCtrl.visitEventScanner(book)">新增事件</button>-->
