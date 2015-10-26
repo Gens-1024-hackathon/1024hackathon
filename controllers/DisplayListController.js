@@ -122,10 +122,53 @@ function DisplayListController($q,$state){
       var reader = new FileReader();
       reader.onload = function(evt) {
         var data = JSON.parse(evt.target.result);
+        importData(data);
       };
       reader.readAsText(file);
 
     };
 
     initialize();
+    return;
+
+    function importData(data) {
+
+      var Book = _model.Book;
+      var EventGroup = _model.EventGroup;
+
+      var titles = Object.keys(data.reduce(function(memo, item) {
+        // console.log(item.tags);
+        memo[item.tags[0]] = true;
+        return memo;
+      }, {}));
+
+      $q
+        .all(titles.map(function(title) {
+          return Book.create({
+            title: title,
+            author: '匿名'
+          });
+        }))
+        .then(function(books) {
+          var indexed = books.reduce(function(memo, book) {
+            memo[book.title] = book._id;
+            return memo;
+          }, {});
+          var tasks = data.map(function(item) {
+            return EventGroup.create({
+              bookId: indexed[item.tags[0]],
+              description: item.description,
+              anchor: [
+                {value: moment.unix(item.time.start.start).year()},
+                {value: moment.unix(item.time.end.end).year()}
+              ]
+            });
+          });
+          return $q.all(tasks);
+        });
+
+      console.log(titles);
+
+    }
+
 }

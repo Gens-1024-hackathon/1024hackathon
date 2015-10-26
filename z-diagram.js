@@ -269,7 +269,6 @@ var Diagram = (function () {
 
       var prepare = this.sortEventGroupsByDuration(_.toArray(this.viewEventGroupSet));
 
-      booked = true;
       var events;
       if (booked) {
         events = _.flatten(_.toArray(this.bookedColumns(prepare)), true).map(function (eventGroups, column) {

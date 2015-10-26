@@ -11,10 +11,10 @@
 <div class="container">
 
   <div>
-    <label>书籍选择：</label>
-    <div class="btn-group">
-      <button ng-repeat="book in vm.books" class="btn btn-sm btn-default" uib-btn-checkbox ng-model="book.state" ng-click="vm.toggle(book)">{{book.title}}</button>
-    </div>
+    <label>书籍选择</label>
+    <button ng-repeat="book in vm.books" class="btn btn-sm btn-default" uib-btn-checkbox ng-model="book.state" ng-click="vm.toggle(book)">{{book.title}}</button>
+    <label>按书籍分类</label>
+    <button class="btn btn-sm btn-default" uib-btn-checkbox ng-model="vm.classify" ng-click="vm.toggleClassify(book)">分离</button>
   </div>
 
   <br>

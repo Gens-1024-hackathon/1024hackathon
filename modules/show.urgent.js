@@ -62,13 +62,17 @@ ShowController.prototype.toggle = function(book) {
 
 };
 
+ShowController.prototype.toggleClassify = function(book) {
+  this.dom = this.diagram.render(this.classify);
+};
+
 ShowController.prototype.open = function(bookId) {
   var $q = this.$q;
   var self = this;
   $q
     .when(this.diagram.open(bookId))
     .then(function() {
-      self.dom = self.diagram.render();
+      self.dom = self.diagram.render(self.classify);
     });
 };
 
