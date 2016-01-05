@@ -44,7 +44,7 @@ ShowController.prototype.initialize = function() {
   var $q = this.$q;
   var Book = _model.Book;
   var self = this;
-  this.diagram = new _model.Diagram();
+  this.diagram = new _model.Diagram(_model);
   $q
     .when(Book.findAll())
     .then(function(books) {
